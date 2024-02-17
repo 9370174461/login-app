@@ -1,13 +1,30 @@
 "use client"
-import React from 'react'
+import React from 'react';
 import { useState } from 'react';
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from './firebase/config';
 
-function page() {
+function Page() { 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const signUp = (e) => {
+    e.preventDefault(); 
 
-  
+    
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed up 
+        const user = userCredential.user;
+   
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+ 
+      });
+  }
+
   return (
     <>
       <div
@@ -16,7 +33,7 @@ function page() {
       >
         <div className="row justify-content-center mt-5">
           <div className="col-md-6">
-            <form >
+            <form onSubmit={signUp}>
               <div className="justify-content-center mt-5 p-2">
                 <h1>Sign In</h1>
               </div>
@@ -57,4 +74,5 @@ function page() {
     </>
   );
 }
-export default page
+
+export default Page;
