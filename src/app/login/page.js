@@ -35,7 +35,7 @@ function Login() {
           <div className="col-md-6">
             <form onSubmit={signUp}>
               <div className="justify-content-center mt-5 p-2">
-                <h1> Login</h1>
+                <h1> Login </h1>
               </div>
               <div className="mb-3">
                 <label htmlFor="title" className="form-label">
